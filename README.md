@@ -44,8 +44,8 @@ Además, el cotizador debe incluir los siguientes recargos la precio base:
   5. Calcular recargo por edad
   6. Solicitar si el asegurado tiene cónyuge.
   7. Si el asegurado tiene cónyuge:
-     - Solicitar la edad del cónyuge.
-     - Calcular recargo por edad del conyuge
+     1. Solicitar la edad del cónyuge.
+     2. Calcular recargo por edad del conyuge
   8. Solicitar la cantidad de hijos del asegurado.
   9. Calcular los recargos basado y en la cantidad de hijos.
   10. Calcular el precio total del seguro sumando el precio base y los recargos correspondientes.
