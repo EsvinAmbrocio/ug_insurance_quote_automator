@@ -8,3 +8,6 @@
 
 - **Nombre:** Esvin Danilo Ambrocio Chan
 - **Carnet:** 24003541
+## Insisos del proyecto
+- [Requerimientos](REQUIREMENTS.md)
+- [Algoritmo](ALGORITHM.md)
