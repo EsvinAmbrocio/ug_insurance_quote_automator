@@ -25,14 +25,18 @@ var precio_final = 0
 var nombre = prompt("Ingrese su nombre, por favor")
 var edad = prompt("¿Cuantos años tiene? Ingrese solamente números ")
 
-var casado = prompt("¿Está casado actualmente?")
+var casado = prompt("¿Está casado actualmente?", "si/no")
 //Comprobamos la edad del cónyuge, solamente si se está casado/a
 var edad_conyuge
 if("SI" == casado.toUpperCase()){
-  edad_conyuge = prompt("¿Que edad tiene su esposo/a?", "si/no")
+  edad_conyuge = prompt("¿Que edad tiene su esposo/a?")
 }
 //convirtiendo las edades ingresadas a números
 var edad_numero = parseInt(edad)
+if(edad_numero < 18) {
+  alert("No tiene la edad suficiente para ser asegurado")
+  throw new Error("No tiene la edad suficiente para ser asegurado")
+}
 var edad_conyuge_numero = 0
 //convirtiendo la edad del cónyuge si se esta casado/a
 if("SI" == casado.toUpperCase()){
@@ -41,10 +45,14 @@ if("SI" == casado.toUpperCase()){
 
 var hijos = prompt("¿Tiene hijos o hijas?")
 //Comprobamos la cantidad de hijos solamente si los tienen
-var cantidad_hijos
+var cantidad_hijos = 0
+if("SI" == hijos.toUpperCase()) {
+  cantidad_hijos = prompt("¿Cuantos hijo tienes?")
+}
 /**
  * 1. convierta la cantidad de hijos a numero
  */
+cantidad_hijos = parseInt(cantidad_hijos)
 
 //Aquí debe calcular el recargo total basado en las respuestas ingresadas
 
@@ -55,20 +63,42 @@ if(edad_numero>=18 && edad_numero<25){
   recargo = precio_base * edad_18
   //Sumamos todos los recargos que hemos obtenido
   recargo_total = recargo_total + recargo
-}
-//aqui puede colocar un else if() con el siguiente rango
+} else if(edad_numero >= 25 && edad_numero <=  49) { //aqui puede colocar un else if() con el siguiente rango
+  recargo = precio_base * edad_25
+  recargo_total = recargo_total + recargo
+} else if (edad_numero >= 50) {
+  recargo = precio_base * edad_50
+  recargo_total = recargo_total + recargo
 
+}
 /**
  * 2. Recargo por la edad del conyuge
  */
+recargo = 0
+if(edad_conyuge>=18 && edad_conyuge<25){
+  recargo = precio_base * edad_18
+  recargo_total = recargo_total + recargo
+} else if(edad_conyuge >= 25 && edad_conyuge <=  49) {
+  recargo = precio_base * edad_25
+  recargo_total = recargo_total + recargo
+} else if (edad_conyuge >= 50) {
+  recargo = precio_base * edad_50
+  recargo_total = recargo_total + recargo
+
+}
 
 /**
  * 3. Recargo por la cantidad de hijos
  */
 
+recargo = 0
+recargo = precio_base* hijos_recargo*cantidad_hijos
+recargo_total = recargo_total + recargo
+console.log(`recargo por hijos ${recargo}`)
 
 precio_final = precio_base + recargo_total
 //Resultado
 alert ("Para el asegurado "+nombre)
 alert ("El recargo total sera de: "+recargo_total)
 alert ("El precio sera de: "+precio_final)
+
